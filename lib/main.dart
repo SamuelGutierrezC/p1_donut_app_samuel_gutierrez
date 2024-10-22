@@ -7,14 +7,14 @@ void main() {
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
-
+  
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomePage(),
-      theme: ThemeData(
-         tabBarTheme: const TabBarTheme(indicatorColor: Colors.pink)
-      ),
+    return  MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: const HomePage(),
+      theme: ThemeData( 
+        tabBarTheme: const TabBarTheme(indicatorColor: Colors.pink)),
     );
   }
 }
