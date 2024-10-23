@@ -105,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                   DonutTab(addToCart: addToCart, removeFromCart: removeFromCart),
                   BurgerTab(addToCart: addToCart, removeFromCart: removeFromCart),
                   SmoothieTab(addToCart: addToCart, removeFromCart: removeFromCart),
-                  const PanCakeTab(),
+                  PanCakeTab(addToCart: addToCart, removeFromCart: removeFromCart),
                   PizzaTab(addToCart: addToCart, removeFromCart: removeFromCart),
                 ],
               ),

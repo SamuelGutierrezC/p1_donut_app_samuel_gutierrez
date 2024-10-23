@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 
-class SmoothieTile extends StatelessWidget {
-  final String smoothieFlavor;
-  final String smoothiePrice;
-  final dynamic smoothieColor;
+class PanCakeTile extends StatelessWidget{
+  final String pancakeFlavor;
+  final String pancakePrice;
+  final dynamic pancakeColor;
   final String imageName;
 
-  const SmoothieTile({
-    super.key,
-    required this.smoothieFlavor,
-    required this.smoothiePrice,
-    this.smoothieColor,
-    required this.imageName,
-  });
+  const PanCakeTile(
+    {super.key, 
+    required this.pancakeFlavor, 
+    required this.pancakePrice,  
+    this.pancakeColor, 
+    required this.imageName});
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Container(
-        decoration: BoxDecoration(color: smoothieColor[50], borderRadius: BorderRadius.circular(24)),
+        decoration: BoxDecoration(color: pancakeColor[50], borderRadius: BorderRadius.circular(24)),
       child: Column(
         children: [
           Row(
@@ -27,15 +26,15 @@ class SmoothieTile extends StatelessWidget {
             children: [
           Container(
             decoration: BoxDecoration(
-              color: smoothieColor[100], 
+              color: pancakeColor[100], 
               borderRadius: const BorderRadius.only(
                 topRight: Radius.circular(24),
                 bottomLeft: Radius.circular(24)) ),
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 18),
-            child: Text("\$$smoothiePrice",
+            child: Text("\$$pancakePrice",
             style: TextStyle(fontSize: 18, 
             fontWeight: FontWeight.bold,
-            color: smoothieColor[800]
+            color: pancakeColor[800]
             ),),
             )],
             ),
@@ -43,11 +42,11 @@ class SmoothieTile extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
             child: Image.asset(imageName),  
             ),
-            Text(smoothieFlavor,
+            Text(pancakeFlavor,
               style:
                 const TextStyle(fontSize: 16,
                 fontWeight: FontWeight.bold),),
-            Text("SmoothieShop",
+            Text("Añas",
             style: TextStyle(color: Colors.grey[600]),),
 
             Padding(

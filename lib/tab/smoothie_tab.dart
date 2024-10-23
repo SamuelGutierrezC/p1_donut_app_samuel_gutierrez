@@ -10,9 +10,9 @@ class SmoothieTab extends StatelessWidget {
     ["Tropical", "70", Colors.green, "lib/images/smoothie_tropical.png"],
     ["Mango", "35", Colors.orange, "lib/images/smoothie_mango.png"],
     ["Banana", "30", Colors.yellow, "lib/images/smoothie_banana.png"],
-    ["Verde Detox", "40", Colors.greenAccent, "lib/images/smoothie_verde_detox.png"],
-    ["Blueberry", "45", Colors.blueAccent, "lib/images/smoothie_blueberry.png"],
-    ["Sandía", "30", Colors.redAccent, "lib/images/smoothie_sandia.png"],
+    ["Verde Detox", "40", Colors.brown, "lib/images/smoothie_verde_detox.png"],
+    ["Blueberry", "45", Colors.purple, "lib/images/smoothie_blueberry.png"],
+    ["Sandía", "30", Colors.pink, "lib/images/smoothie_sandia.png"],
   ];
 
   final Function(String, double) addToCart;
