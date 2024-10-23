@@ -6,7 +6,7 @@ import 'package:p1_donut_app_samuel_gutierrez/tab/donut_tab.dart';
 import 'package:p1_donut_app_samuel_gutierrez/tab/burger_tab.dart';
 import 'package:p1_donut_app_samuel_gutierrez/tab/pancake_tab.dart';
 import 'package:p1_donut_app_samuel_gutierrez/tab/pizza_tab.dart';
-import 'package:p1_donut_app_samuel_gutierrez/tab/Smoothie_tab.dart';
+import 'package:p1_donut_app_samuel_gutierrez/tab/smoothie_tab.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -104,7 +104,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   DonutTab(addToCart: addToCart, removeFromCart: removeFromCart),
                   BurgerTab(addToCart: addToCart, removeFromCart: removeFromCart),
-                  const SmoothieTab(),
+                  SmoothieTab(addToCart: addToCart, removeFromCart: removeFromCart),
                   const PanCakeTab(),
                   PizzaTab(addToCart: addToCart, removeFromCart: removeFromCart),
                 ],
