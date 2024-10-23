@@ -16,83 +16,111 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   List<Widget> myTabs = [
-    //Donut tab
-    const MyTab(
-      iconPath: "lib/icons/donut.png",
-      label: "Donut",
-      ),
-    //burger tab
-    const MyTab(
-      iconPath: "lib/icons/burger.png",
-      label: "Burger",
-      ),
-    //smoothie tab
-    const MyTab(
-      iconPath: "lib/icons/smoothie.png",
-      label: "Smoothie",
-      ),
-    //pancake tab
-    const MyTab(
-      iconPath: "lib/icons/pancakes.png",
-      label: "Pancakes",
-      ),
-    //pizza tab
-    const MyTab(
-      iconPath: "lib/icons/pizza.png",
-      label: "Pizza",
-      )
+    const MyTab(iconPath: "lib/icons/donut.png", iconname: "Donuts"),
+    const MyTab(iconPath: "lib/icons/burger.png", iconname: "Burger"),
+    const MyTab(iconPath: "lib/icons/smoothie.png", iconname: "Smoothie"),
+    const MyTab(iconPath: "lib/icons/pancakes.png", iconname: "Pancake"),
+    const MyTab(iconPath: "lib/icons/pizza.png", iconname: "Pizza"),
   ];
+
+  // Estado del carrito
+  Map<String, int> cartItems = {};
+  double totalAmount = 0;
+
+  // Añadir artículo al carrito
+  void addToCart(String itemName, double itemPrice) {
+    setState(() {
+      if (cartItems.containsKey(itemName)) {
+        cartItems[itemName] = cartItems[itemName]! + 1;
+      } else {
+        cartItems[itemName] = 1;
+      }
+      totalAmount += itemPrice;
+    });
+  }
+
+  // Eliminar artículo del carrito
+  void removeFromCart(String itemName, double itemPrice) {
+    setState(() {
+      if (cartItems.containsKey(itemName)) {
+        if (cartItems[itemName] == 1) {
+          cartItems.remove(itemName);
+        } else {
+          cartItems[itemName] = cartItems[itemName]! - 1;
+        }
+        totalAmount -= itemPrice;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return  DefaultTabController(
+    return DefaultTabController(
       length: myTabs.length,
       child: Scaffold(
         appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: Icon(
-            Icons.menu, 
-            color:Colors.grey[800],
-            ),
-        ),
-        actions: const [Padding(
-          padding: EdgeInsets.only(right: 24.0),
-          child: Icon(Icons.person),
-        )],
-        ),
-        body:  Column(
-      children: [
-        // Texto "I want to eat"
-        const Padding(
-          padding: EdgeInsets.all(24.0),
-          child: Row(
-            children: [
-              Text("I want to ", style: TextStyle(fontSize: 24,),),
-              Text("Eat", style: TextStyle(fontSize: 24, 
-              fontWeight: FontWeight.bold, 
-              decoration: TextDecoration.underline)
-              ), 
-            ],
+          toolbarHeight: 60,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: Icon(Icons.menu, color: Colors.grey[800]),
           ),
-        ), 
-        //Tab bar
-        TabBar(tabs: myTabs),
-        //Tab bar view
-        Expanded(
-          child: TabBarView(children: [
-            DonutTab(),
-            const BurgerTab(),
-            const SmoothieTab(),
-            const PanCakeTab(),
-            const PizzaTab()
-        ]))
-
-        //Total del carrito      
-      ],),
-      ),
-    );
-  }
+          actions: const [
+            Padding(
+              padding: EdgeInsets.only(right: 16.0),
+              child: Icon(Icons.person, color: Colors.grey),
+            ),
+          ],
+        ),
+        body: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Row(
+                children: [
+                  Text("I want to ", style: TextStyle(fontSize: 24)),
+                  Text(
+                    "Eat",
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Center(
+              child: TabBar(
+                tabs: myTabs,
+                isScrollable: true,
+                indicatorColor: Colors.pink,
+              ),
+            ),
+            Expanded(
+              child: TabBarView(
+                children: [
+                  DonutTab(addToCart: addToCart, removeFromCart: removeFromCart),
+                  BurgerTab(addToCart: addToCart, removeFromCart: removeFromCart),
+                  const SmoothieTab(),
+                  const PanCakeTab(),
+                  const PizzaTab(),
+                ],
+              ),
+            ),
+            // Usar CartBar
+            CartBar(
+              itemCount: cartItems.values.fold(0, (a, b) => a + b),
+              totalAmount: totalAmount,
+              onViewCartPressed: () {
+                // Acción al presionar "View Cart"
+              },
+            ),
+          ],
+        ),
+     ),
+);
+}
 }
