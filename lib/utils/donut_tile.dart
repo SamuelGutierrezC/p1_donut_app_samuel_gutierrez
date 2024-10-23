@@ -6,7 +6,11 @@ class DonutTile extends StatelessWidget {
   final dynamic donutColor; //dynamic porque sera de tipo de color
   final String imageName;
 
-  const DonutTile({super.key, required this.donutFlavor, required this.donutPrice, this.donutColor, required this.imageName});
+  const DonutTile({super.key, 
+  required this.donutFlavor, 
+  required this.donutPrice, 
+  this.donutColor, 
+  required this.imageName});
 
   @override
   Widget build(BuildContext context) {
